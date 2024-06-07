@@ -59,11 +59,11 @@ AWS의 서버리스 서비스는 자동으로 리소스를 할당하고 조정�
 - **AWS DynamoDB**: 각 학생의 얼굴 인식 결과와 감정 분석 결과가 DynamoDB에 기록된다.
 
 데이터 흐름은 다음과 같다.
-1. 모바일 애플리케이션에서 얼굴 사진을 촬영하고 이 사진을 AWS S3 버킷에 업로드한다.
-2. 모바일 애플리케이션은 업로드된 사진의 키(key)를 포함하여 AWS API Gateway로 HTTP 요청을 보낸다.
-3. API Gateway는 요청을 받아서 AWS Lambda 함수로 전달한다.
-4. Lambda 함수는 S3에서 사진을 다운로드하고 AWS Rekognition을 호출하여 감정 분석을 수행한다. Smile, Confused 등 분석된 결과는 DynamoDB에 저장된다.
-5. Lambda 함수는 분석 결과를 API Gateway를 통해 모바일 앱으로 응답한다.
+1. **모바일 애플리케이션**에서 얼굴 사진을 촬영하고 이 사진을 **AWS S3** 버킷에 업로드한다.
+2. **모바일 애플리케이션**은 업로드된 사진의 키(key)를 포함하여 **AWS API Gateway**로 HTTP 요청을 보낸다.
+3. **API Gateway**는 요청을 받아서 **AWS Lambda** 함수로 전달한다.
+4. **Lambda** 함수는 **S3**에서 사진을 다운로드하고 **AWS Rekognition**을 호출하여 감정 분석을 수행한다. Smile, Confused 등 분석된 결과는 **DynamoDB**에 저장된다.
+5. **Lambda** 함수는 분석 결과를 **API Gateway**를 통해 **모바일 애플리케이션**으로 응답한다.
 
 ## 📱사용 방법
 TODO
