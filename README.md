@@ -47,7 +47,23 @@ AWS의 서버리스 서비스는 자동으로 리소스를 할당하고 조정�
 위와 같은 AWS의 서비스를 이용해 서버리스 아키텍처를 구축하였다. 서버리스 아키텍처를 도입함으로써 인프라 관리에 대한 부담을 줄이고 동시에 서버리스 아키텍처의 장점인 확장성, 비용 효율성, 빠른 배포 속도 등을 불러올 수 있다.
 
 ## 📋프로젝트 결과
-TODO
+본 프로젝트에서 구현한 시스템의 대략적인 다이어그램은 아래와 같다.
+
+![시스템 다이어그램](https://github.com/icandol007/HWs/blob/master/%EC%A0%9C%EB%AA%A9%20%EC%97%86%EB%8A%94%20%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8.drawio.png)
+
+- **모바일 애플리케이션**: 주기적으로 사진을 촬영해 S3에 업로드한다.
+- **AWS API Gateway**: 모바일 앱과 백엔드(Lambda)간의 엔드포인트를 제공한다. HTTP 요청을 받아 Lambda함수로 라우팅한다.
+- **AWS Lambda**: 서버리스 함수로 API Gateway에서 전달된 요청을 처리하고 감정 분석을 수행하며 그 결과를 DynamoDB에 저장한다.
+- **AWS Rekognition**: Lambda 함수가 S3에서 가져온 사진을 Rekognition에 보내면 얼굴을 인식하고 감정을 분석하여 그 결과를 반환한다.
+- **AWS S3**: 모바일 앱에서 업로드한 학생들의 얼굴 사진이 저장된다.
+- **AWS DynamoDB**: 각 학생의 얼굴 인식 결과와 감정 분석 결과가 DynamoDB에 기록된다.
+
+데이터 흐름은 다음과 같다.
+1. 모바일 애플리케이션에서 얼굴 사진을 촬영하고 이 사진을 AWS S3 버킷에 업로드한다.
+2. 모바일 애플리케이션은 업로드된 사진의 키(key)를 포함하여 AWS API Gateway로 HTTP 요청을 보낸다.
+3. API Gateway는 요청을 받아서 AWS Lambda 함수로 전달한다.
+4. Lambda 함수는 S3에서 사진을 다운로드하고 AWS Rekognition을 호출하여 감정 분석을 수행한다. Smile, Confused 등 분석된 결과는 DynamoDB에 저장된다.
+5. Lambda 함수는 분석 결과를 API Gateway를 통해 모바일 앱으로 응답한다.
 
 ## 📱사용 방법
 TODO
