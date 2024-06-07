@@ -52,7 +52,7 @@ AWS의 서버리스 서비스는 자동으로 리소스를 할당하고 조정�
 ![시스템 다이어그램](https://github.com/icandol007/HWs/blob/master/%EC%A0%9C%EB%AA%A9%20%EC%97%86%EB%8A%94%20%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8.drawio.png)
 
 - **모바일 애플리케이션**: 주기적으로 사진을 촬영해 S3에 업로드한다.
-- **AWS API Gateway**: 모바일 앱과 백엔드(Lambda)간의 엔드포인트를 제공한다. HTTP 요청을 받아 Lambda함수로 라우팅한다.https://github.com/icandol007/HWs/blob/master/README.md
+- **AWS API Gateway**: 모바일 앱과 백엔드(Lambda)간의 엔드포인트를 제공한다. HTTP 요청을 받아 Lambda함수로 라우팅한다.
 - **AWS Lambda**: 서버리스 함수로 API Gateway에서 전달된 요청을 처리하고 감정 분석을 수행하며 그 결과를 DynamoDB에 저장한다.
 - **AWS Rekognition**: Lambda 함수가 S3에서 가져온 사진을 Rekognition에 보내면 얼굴을 인식하고 감정을 분석하여 그 결과를 반환한다.
 - **AWS S3**: 모바일 앱에서 업로드한 학생들의 얼굴 사진이 저장된다.
